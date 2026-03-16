@@ -1,39 +1,54 @@
 import { useState } from 'react'
 import './LayoutV4.css'
+import './LayoutV5Extra.css'
 
-export default function LayoutV4() {
-  const [planType, setPlanType] = useState('subscription') // 'subscription' | 'lifetime'
-  const [advantagePlus, setAdvantagePlus] = useState(false)
+export default function LayoutV5() {
+  const [licenseType, setLicenseType] = useState('subscription') // 'subscription' | 'lifetime'
+  const [premiumSupport, setPremiumSupport] = useState(false)
   const [showCompare, setShowCompare] = useState(false)
+
+  const isLifetime = licenseType === 'lifetime'
+  // Lifetime always includes Premium Support
+  const hasPremium = isLifetime || premiumSupport
+
+  const handleLicenseChange = (type) => {
+    setLicenseType(type)
+    if (type === 'lifetime') {
+      setPremiumSupport(true)
+    }
+  }
 
   // Derive cart values
   const cart = (() => {
-    if (planType === 'subscription') {
+    if (!isLifetime) {
       const base = 366
-      const advPlus = advantagePlus ? 146 : 0
+      const advPlus = hasPremium ? 146 : 0
       return {
         productName: 'Product1',
         licenseType: 'Annual License',
         planTitle: 'Subscription',
         seatPrice: base,
-        subscription: advantagePlus ? 'Premium Support' : 'Support',
-        subscriptionNote: advantagePlus ? '146.00 USD yearly' : 'Included in license',
+        subscription: hasPremium ? 'Premium Support' : 'Support',
+        subscriptionNote: hasPremium ? '146.00 USD yearly' : 'Included in license',
         total: base + advPlus,
         totalPeriod: '/year',
       }
     }
-    // lifetime
     return {
       productName: 'Product1',
       licenseType: 'Perpetual License',
       planTitle: 'Lifetime',
       seatPrice: 839,
       subscription: 'Premium Support',
-      subscriptionNote: 'First year included, then 335.60 USD yearly',
+      subscriptionNote: 'Included in first year',
       total: 839,
       totalPeriod: 'one-time',
     }
   })()
+
+  // Price display
+  const displayPrice = isLifetime ? '$839' : (hasPremium ? '$512' : '$366')
+  const displayPeriod = isLifetime ? 'one-time' : '/year'
 
   return (
     <div className="v2">
@@ -50,119 +65,92 @@ export default function LayoutV4() {
         <div className="v2-main">
           {/* ── Plan card ── */}
           <div className="v2-card">
-            {planType === 'subscription' ? (
-              <>
-                <div className="v2-card-top">
-                  <h2 className="v2-card-title">Subscription</h2>
-                  <p className="v2-card-tagline">Use our software and updates as long as you subscribe.</p>
+            <div className="v2-card-top">
+              <h2 className="v2-card-title">Product1</h2>
+              <p className="v2-card-tagline">{isLifetime ? 'Lifetime license for one developer' : 'Annual subscription for one developer'}</p>
+            </div>
+
+            <div className="v2-card-price-block">
+              <span className="v2-card-price">{displayPrice}</span>
+              <span className="v2-card-price-period">{displayPeriod}</span>
+            </div>
+
+            <ul className="v2-card-features">
+              <li className="v2-feature-row">
+                <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <span className="v2-feature-label">
+                    {isLifetime ? 'Permanent access to your version' : 'Always the latest version'}
+                  </span>
                 </div>
-
-                <div className="v2-card-price-block">
-                  <span className="v2-card-price">${advantagePlus ? '512' : '366'}</span>
-                  <span className="v2-card-price-period">/year</span>
+              </li>
+              <li className="v2-feature-row">
+                <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                  <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <span className="v2-feature-label">
+                    {hasPremium ? 'Premium Support' : 'Support'}
+                    {isLifetime && ' — 1 year included'}
+                  </span>
                 </div>
+              </li>
+            </ul>
 
-                <ul className="v2-card-features">
-                  <li className="v2-feature-row">
-                    <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="v2-feature-label">Always the latest version</span>
-                    </div>
-                  </li>
-                  <li className="v2-feature-row">
-                    <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="v2-feature-label">Support</span>
-                    </div>
-                  </li>
-                </ul>
-
-                {/* Advantage+ add-on */}
-                <label className="v2-addon" onClick={(e) => e.stopPropagation()}>
-                  <div className="v2-addon-check">
-                    <input
-                      type="checkbox"
-                      checked={advantagePlus}
-                      onChange={(e) => setAdvantagePlus(e.target.checked)}
-                      className="v2-addon-input"
-                    />
-                  </div>
-                  <div className="v2-addon-content">
-                    <div className="v2-addon-header">
-                      <span className="v2-addon-title">Upgrade to Premium Support</span>
-                      <span className="v2-addon-price">+$146/year</span>
-                    </div>
-                    <span className="v2-addon-desc">Priority support with faster response times and dedicated assistance.</span>
-                  </div>
-                </label>
-                <button className="v2-compare-link" onClick={() => setShowCompare(true)}>
-                  Compare Support vs Premium Support
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="v2-card-top">
-                  <h2 className="v2-card-title">Lifetime</h2>
-                  <p className="v2-card-tagline">Own the software forever with a one-time purchase.</p>
+            {/* Premium Support add-on */}
+            <label className={`v2-addon ${isLifetime ? 'v5-addon--locked' : ''}`} onClick={(e) => e.stopPropagation()}>
+              <div className="v2-addon-check">
+                <input
+                  type="checkbox"
+                  checked={hasPremium}
+                  onChange={(e) => !isLifetime && setPremiumSupport(e.target.checked)}
+                  disabled={isLifetime}
+                  className="v2-addon-input"
+                />
+              </div>
+              <div className="v2-addon-content">
+                <div className="v2-addon-header">
+                  <span className="v2-addon-title">Upgrade to Premium Support</span>
+                  {isLifetime
+                    ? <span className="v5-addon-included">Included in first year</span>
+                    : <span className="v2-addon-price">+$146/year</span>
+                  }
                 </div>
-
-                <div className="v2-card-price-block">
-                  <span className="v2-card-price">$839</span>
-                  <span className="v2-card-price-period">one-time</span>
+                <span className="v2-addon-desc">Priority support with faster response times and dedicated assistance.</span>
+              </div>
+            </label>
+            {/* Lifetime license option */}
+            <label className="v2-addon v5-addon-lifetime" onClick={(e) => e.stopPropagation()}>
+              <div className="v2-addon-check">
+                <input
+                  type="checkbox"
+                  checked={isLifetime}
+                  onChange={(e) => handleLicenseChange(e.target.checked ? 'lifetime' : 'subscription')}
+                  className="v2-addon-input"
+                />
+              </div>
+              <div className="v2-addon-content">
+                <div className="v2-addon-header">
+                  <span className="v2-addon-title">Lifetime License</span>
+                  <span className="v2-addon-price">$839 one-time</span>
                 </div>
+                <span className="v2-addon-desc">Own the software forever instead of subscribing. Includes Premium Support for the first year.</span>
+                {isLifetime && (
+                  <span className="v5-addon-renewal">Premium Support renews at $336/year after the first year.</span>
+                )}
+              </div>
+            </label>
 
-                <ul className="v2-card-features">
-                  <li className="v2-feature-row">
-                    <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="v2-feature-label">Permanent access</span>
-                    </div>
-                  </li>
-                  <li className="v2-feature-row">
-                    <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <span className="v2-feature-label">Premium Support — 1 year included</span>
-                    </div>
-                  </li>
-                </ul>
-
-                <div className="v2-renewal-note">
-                  <svg className="v2-renewal-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                  </svg>
-                  <span>After the first year Premium Support renews at $336/year.</span>
-                </div>
-              </>
-            )}
+            <button className="v2-compare-link" onClick={() => setShowCompare(true)}>
+              Compare Support vs Premium Support
+            </button>
           </div>
 
           {/* ── Cart ── */}
           <aside className="v2-cart">
             <div className="v2-cart-inner">
-              {/* ── Toggle ── */}
-              <div className="v2-cart-toggle">
-                <button
-                  className={`v2-cart-toggle-btn ${planType === 'subscription' ? 'v2-cart-toggle-btn--active' : ''}`}
-                  onClick={() => setPlanType('subscription')}
-                >
-                  Subscription
-                </button>
-                <button
-                  className={`v2-cart-toggle-btn ${planType === 'lifetime' ? 'v2-cart-toggle-btn--active' : ''}`}
-                  onClick={() => setPlanType('lifetime')}
-                >
-                  Lifetime
-                </button>
-              </div>
-
               <h3 className="v2-cart-heading">Order Summary</h3>
 
               <div className="v2-cart-product-row">
@@ -195,6 +183,7 @@ export default function LayoutV4() {
           </aside>
         </div>
       </div>
+
       {/* ── Compare modal ── */}
       {showCompare && (
         <div className="v2-modal-overlay" onClick={() => setShowCompare(false)}>
@@ -205,14 +194,12 @@ export default function LayoutV4() {
             </div>
 
             <div className="v2-compare-table">
-              {/* Header row */}
               <div className="v2-compare-row v2-compare-row--header">
                 <div className="v2-compare-cell v2-compare-cell--label"></div>
                 <div className="v2-compare-cell v2-compare-cell--adv">Support</div>
                 <div className="v2-compare-cell v2-compare-cell--advplus">Premium Support</div>
               </div>
 
-              {/* SUPPORT section */}
               <div className="v2-compare-section-label">Support</div>
 
               <div className="v2-compare-row">
@@ -240,7 +227,6 @@ export default function LayoutV4() {
                 </div>
               </div>
 
-              {/* ACCESS section */}
               <div className="v2-compare-section-label">Access</div>
 
               <div className="v2-compare-row">
@@ -280,7 +266,6 @@ export default function LayoutV4() {
                 </div>
               </div>
 
-              {/* GUIDANCE section */}
               <div className="v2-compare-section-label">Guidance</div>
 
               <div className="v2-compare-row">

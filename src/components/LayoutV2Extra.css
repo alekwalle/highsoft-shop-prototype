@@ -52,8 +52,8 @@ body {
 .v2-content--wide .v2-cart-total-number {
   font-size: 1.5rem;
 }
-.v2-content--wide .v2-cart-total-currency {
-  font-size: 0.8rem;
+.v2-content--wide .v2-cart-total-suffix {
+  font-size: 0.7rem;
 }
 .v2-content--wide .v2-cart-checkout {
   padding: 12px;

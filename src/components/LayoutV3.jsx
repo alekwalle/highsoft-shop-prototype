@@ -12,19 +12,23 @@ export default function LayoutV3() {
   const cartData = selectedPlan === 'subscription'
     ? {
         licenseType: 'Annual License',
-        productName: 'Software One',
+        productName: 'Product1',
+        planTitle: 'Subscription',
         seatPrice: 366,
         subscription: advantagePlus ? 'Premium Support' : 'Support',
         subscriptionNote: advantagePlus ? '146.00 USD yearly' : 'Included in license',
         total: subTotal,
+        totalPeriod: '/year',
       }
     : {
         licenseType: 'Perpetual License',
-        productName: 'Software One',
+        productName: 'Product1',
+        planTitle: 'Lifetime',
         seatPrice: 839,
         subscription: 'Premium Support',
         subscriptionNote: 'First year included, then 335.60 USD yearly',
         total: 839,
+        totalPeriod: 'one-time',
       }
 
   return (
@@ -174,7 +178,7 @@ export default function LayoutV3() {
 
               <div className="v2-cart-line-items">
                 <div className="v2-cart-line">
-                  <span className="v2-cart-line-label">1 Developer Seat</span>
+                  <span className="v2-cart-line-label">{cartData.planTitle}</span>
                   <span className="v2-cart-line-value">${cartData.seatPrice.toFixed(2)}</span>
                 </div>
                 <div className="v2-cart-line">
@@ -187,7 +191,7 @@ export default function LayoutV3() {
                 <span className="v2-cart-total-label">Total</span>
                 <div className="v2-cart-total-amount">
                   <span className="v2-cart-total-number">${cartData.total.toFixed(2)}</span>
-                  <span className="v2-cart-total-currency">USD</span>
+                  <span className="v2-cart-total-suffix">USD {cartData.totalPeriod}</span>
                 </div>
               </div>
 

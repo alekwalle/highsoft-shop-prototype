@@ -19,11 +19,12 @@ export default function LayoutV2() {
       ],
       cart: {
         licenseType: 'Annual License',
-        productName: 'Software One',
+        productName: 'Product1',
         seatPrice: 366,
         subscription: 'Support',
         subscriptionNote: 'Included in license',
-        total: 366
+        total: 366,
+        totalPeriod: '/year'
       }
     },
     {
@@ -40,11 +41,12 @@ export default function LayoutV2() {
       ],
       cart: {
         licenseType: 'Annual License',
-        productName: 'Software One',
+        productName: 'Product1',
         seatPrice: 366,
         subscription: 'Premium Support',
         subscriptionNote: '146.00 USD yearly',
-        total: 512
+        total: 512,
+        totalPeriod: '/year'
       }
     },
     {
@@ -61,11 +63,12 @@ export default function LayoutV2() {
       ],
       cart: {
         licenseType: 'Perpetual License',
-        productName: 'Software One',
+        productName: 'Product1',
         seatPrice: 839,
         subscription: 'Premium Support',
         subscriptionNote: 'First year included, then 335.60 USD yearly',
-        total: 839
+        total: 839,
+        totalPeriod: 'one-time'
       }
     }
   ]
@@ -147,7 +150,7 @@ export default function LayoutV2() {
 
                 <div className="v2-cart-line-items">
                   <div className="v2-cart-line">
-                    <span className="v2-cart-line-label">1 Developer Seat</span>
+                    <span className="v2-cart-line-label">{selectedPlanData.title}</span>
                     <span className="v2-cart-line-value">${selectedPlanData.cart.seatPrice.toFixed(2)}</span>
                   </div>
                   <div className="v2-cart-line">
@@ -160,7 +163,7 @@ export default function LayoutV2() {
                   <span className="v2-cart-total-label">Total</span>
                   <div className="v2-cart-total-amount">
                     <span className="v2-cart-total-number">${selectedPlanData.cart.total.toFixed(2)}</span>
-                    <span className="v2-cart-total-currency">USD</span>
+                    <span className="v2-cart-total-suffix">USD {selectedPlanData.cart.totalPeriod}</span>
                   </div>
                 </div>
 

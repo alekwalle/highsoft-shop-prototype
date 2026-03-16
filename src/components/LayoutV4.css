@@ -450,7 +450,7 @@ body {
 .v2-cart-total {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: baseline;
   padding: 20px 0 24px;
 }
 .v2-cart-total-label {
@@ -467,11 +467,11 @@ body {
   color: #1a1a2e;
   letter-spacing: -0.5px;
 }
-.v2-cart-total-currency {
-  font-size: 0.9rem;
-  font-weight: 600;
+.v2-cart-total-suffix {
+  font-size: 0.8rem;
+  font-weight: 500;
   color: #888;
-  margin-left: 5px;
+  margin-left: 4px;
 }
 
 .v2-cart-checkout {

@@ -1,0 +1,29 @@
+/* ── V5 extras ── */
+
+/* Locked addon state for lifetime */
+.v5-addon--locked {
+  opacity: 0.85;
+  cursor: default;
+}
+.v5-addon--locked .v2-addon-input {
+  cursor: default;
+}
+
+.v5-addon-included {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #3a8c5c;
+  white-space: nowrap;
+}
+
+.v5-addon-renewal {
+  display: block;
+  font-size: 0.74rem;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Lifetime addon separator */
+.v5-addon-lifetime {
+  margin-top: 8px;
+}
