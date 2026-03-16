@@ -9,8 +9,8 @@ body {
 }
 
 .v2x-main {
-  display: grid;
-  grid-template-columns: 1fr 280px;
+  display: flex;
+  justify-content: center;
   gap: 24px;
   align-items: start;
 }
@@ -209,4 +209,45 @@ body {
   .v2x-cards-grid--2 {
     grid-template-columns: 1fr;
   }
+}
+
+/* Yearly note inside card box */
+.v2-card-price-block:has(.v2-card-yearly-note) {
+  flex-wrap: wrap;
+}
+.v2-card-yearly-note {
+  width: 100%;
+  margin: 4px 0 0 0;
+  font-size: 0.76rem;
+  color: #6e6e80;
+}
+
+/* Feature header and indent styles */
+.v2-feature-header {
+  margin-top: 8px;
+}
+.v2-feature-header .v2-feature-label {
+  font-weight: 600;
+  color: #444;
+}
+.v2-feature-indent {
+  padding-left: 8px;
+}
+.v2-feature-dot {
+  font-size: 0.9rem;
+  color: #6e6e80;
+  margin-right: 8px;
+}
+
+/* Feature color backgrounds */
+.v2-card-features-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v2-features-green {
+  padding: 0;
+}
+.v2-features-purple {
+  padding: 0;
 }

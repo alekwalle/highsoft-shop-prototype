@@ -14,8 +14,8 @@ export default function LayoutV2() {
       price: '$366',
       pricePeriod: '/year',
       features: [
-        { label: 'Latest versions', desc: 'Access to all updates during your subscription' },
-        { label: 'Support', desc: 'Standard support included with your license' },
+        { label: 'Latest version', color: 'green' },
+        { label: 'Support', color: 'green' },
       ],
       cart: {
         licenseType: 'Annual License',
@@ -33,19 +33,19 @@ export default function LayoutV2() {
       tagline: 'Best value',
       recommended: true,
       description: 'Use our software and updates as long as you subscribe, with Premium Support.',
-      price: '$512',
+      price: '$395',
       pricePeriod: '/year',
       features: [
-        { label: 'Latest versions', desc: 'Access to all updates during your subscription' },
-        { label: 'Premium Support', desc: 'Priority support with faster response times' },
+        { label: 'Latest version', color: 'green' },
+        { label: 'Premium Support', color: 'green' },
       ],
       cart: {
         licenseType: 'Annual License',
         productName: 'Product1',
-        seatPrice: 366,
+        seatPrice: 395,
         subscription: 'Premium Support',
         subscriptionNote: '146.00 USD yearly',
-        total: 512,
+        total: 395,
         totalPeriod: '/year'
       }
     },
@@ -53,13 +53,14 @@ export default function LayoutV2() {
       id: 'lifetime-license',
       title: 'Lifetime',
       tagline: 'Permanent license',
-      description: 'Own the software forever. Includes one year of updates and Premium Support.',
+      description: 'Use the software forever. Includes one year of updates and Premium Support.',
       price: '$839',
       pricePeriod: 'one-time',
-      renewalNote: '$336 yearly for updates after first year',
       features: [
-        { label: 'Lifetime access', desc: 'Permanent access to the version at purchase' },
-        { label: 'Premium Support', desc: '1 year included, then 335.60 USD yearly' },
+        { label: 'Lifetime access to current version', color: 'purple' },
+        { label: 'First year included, then $336/yearly:', isHeader: true, color: 'purple' },
+        { label: 'Premium support', indent: true, color: 'green' },
+        { label: 'Latest version', indent: true, color: 'green' },
       ],
       cart: {
         licenseType: 'Perpetual License',
@@ -123,10 +124,15 @@ export default function LayoutV2() {
 
                   <ul className="v2-card-features">
                     {plan.features.map((f, i) => (
-                      <li key={i} className="v2-feature-row">
-                        <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                      <li key={i} className={`v2-feature-row ${f.isHeader ? 'v2-feature-header' : ''} ${f.indent ? 'v2-feature-indent' : ''}`}>
+                        {!f.isHeader && !f.isDot && (
+                          <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                        {f.isDot && (
+                          <span className="v2-feature-dot">•</span>
+                        )}
                         <span className="v2-feature-label">{f.label}</span>
                       </li>
                     ))}
@@ -136,42 +142,6 @@ export default function LayoutV2() {
               )
             })}
           </div>
-
-          {/* ── Cart ── */}
-          {selectedPlanData && (
-            <aside className="v2-cart">
-              <div className="v2-cart-inner">
-                <h3 className="v2-cart-heading">Order Summary</h3>
-
-                <div className="v2-cart-product-row">
-                  <span className="v2-cart-product-name">{selectedPlanData.cart.productName}</span>
-                  <span className="v2-cart-license-badge">{selectedPlanData.cart.licenseType}</span>
-                </div>
-
-                <div className="v2-cart-line-items">
-                  <div className="v2-cart-line">
-                    <span className="v2-cart-line-label">{selectedPlanData.title}</span>
-                    <span className="v2-cart-line-value">${selectedPlanData.cart.seatPrice.toFixed(2)}</span>
-                  </div>
-                  <div className="v2-cart-line">
-                    <span className="v2-cart-line-label">{selectedPlanData.cart.subscription}</span>
-                    <span className="v2-cart-line-value-sub">{selectedPlanData.cart.subscriptionNote}</span>
-                  </div>
-                </div>
-
-                <div className="v2-cart-total">
-                  <span className="v2-cart-total-label">Total</span>
-                  <div className="v2-cart-total-amount">
-                    <span className="v2-cart-total-number">${selectedPlanData.cart.total.toFixed(2)}</span>
-                    <span className="v2-cart-total-suffix">USD {selectedPlanData.cart.totalPeriod}</span>
-                  </div>
-                </div>
-
-                <button className="v2-cart-checkout">Proceed to Checkout</button>
-                <p className="v2-cart-secure">Secure checkout</p>
-              </div>
-            </aside>
-          )}
         </div>
       </div>
     </div>
