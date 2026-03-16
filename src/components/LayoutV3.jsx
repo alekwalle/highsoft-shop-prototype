@@ -7,7 +7,7 @@ export default function LayoutV3() {
   const [advantagePlus, setAdvantagePlus] = useState(false)
   const [showCompare, setShowCompare] = useState(false)
 
-  const subTotal = advantagePlus ? 512 : 366
+  const subTotal = advantagePlus ? 395 : 366
 
   const cartData = selectedPlan === 'subscription'
     ? {
@@ -63,11 +63,11 @@ export default function LayoutV3() {
                   />
                   <h2 className="v2-card-title">Subscription</h2>
                 </div>
-                <p className="v2-card-tagline">Use our software and updates as long as you subscribe.</p>
+                <p className="v2-card-tagline">Use our software as long as you subscribe.</p>
               </div>
 
               <div className="v2-card-price-block">
-                <span className="v2-card-price">${advantagePlus ? '512' : '366'}</span>
+                <span className="v2-card-price">${advantagePlus ? '395' : '366'}</span>
                 <span className="v2-card-price-period">/year</span>
               </div>
 
@@ -77,7 +77,7 @@ export default function LayoutV3() {
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <div>
-                    <span className="v2-feature-label">Always the latest version</span>
+                    <span className="v2-feature-label">Latest version</span>
                   </div>
                 </li>
                 <li className="v2-feature-row">
@@ -103,14 +103,11 @@ export default function LayoutV3() {
                 <div className="v2-addon-content">
                   <div className="v2-addon-header">
                     <span className="v2-addon-title">Upgrade to Premium Support</span>
-                    <span className="v2-addon-price">+$146/year</span>
+                    <span className="v2-addon-price">+$29/year</span>
                   </div>
                   
                 </div>
               </label>
-              <button className="v2-compare-link" onClick={(e) => { e.stopPropagation(); setShowCompare(true) }}>
-                Compare Support vs Premium Support
-              </button>
             </div>
 
             {/* Lifetime card */}
@@ -130,7 +127,7 @@ export default function LayoutV3() {
                   />
                   <h2 className="v2-card-title">Lifetime</h2>
                 </div>
-                <p className="v2-card-tagline">Own the software forever with a one-time purchase.</p>
+                <p className="v2-card-tagline">Use the software forever with a one-time purchase.</p>
               </div>
 
               <div className="v2-card-price-block">
@@ -144,61 +141,32 @@ export default function LayoutV3() {
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <div>
-                    <span className="v2-feature-label">Permanent access</span>
+                    <span className="v2-feature-label">Lifetime access to current version</span>
                   </div>
                 </li>
-                <li className="v2-feature-row">
+                <li className="v2-feature-header" style={{marginTop: '12px', fontWeight: 'bold', color: '#3b2d5c'}}>
+                  First year included, then $336/yearly:
+                </li>
+                <li className="v2-feature-row v2-feature-indent">
                   <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
                   <div>
-                    <span className="v2-feature-label">Premium Support — 1 year included</span>
+                    <span className="v2-feature-label">Premium support</span>
+                  </div>
+                </li>
+                <li className="v2-feature-row v2-feature-indent">
+                  <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <span className="v2-feature-label">Latest version</span>
                   </div>
                 </li>
               </ul>
-
-              <div className="v2-renewal-note">
-                <svg className="v2-renewal-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                </svg>
-                <span>After the first year Premium Support renews at $336/year.</span>
-              </div>
             </div>
           </div>
 
-          {/* ── Cart ── */}
-          <aside className="v2-cart">
-            <div className="v2-cart-inner">
-              <h3 className="v2-cart-heading">Order Summary</h3>
-
-              <div className="v2-cart-product-row">
-                <span className="v2-cart-product-name">{cartData.productName}</span>
-                <span className="v2-cart-license-badge">{cartData.licenseType}</span>
-              </div>
-
-              <div className="v2-cart-line-items">
-                <div className="v2-cart-line">
-                  <span className="v2-cart-line-label">{cartData.planTitle}</span>
-                  <span className="v2-cart-line-value">${cartData.seatPrice.toFixed(2)}</span>
-                </div>
-                <div className="v2-cart-line">
-                  <span className="v2-cart-line-label">{cartData.subscription}</span>
-                  <span className="v2-cart-line-value-sub">{cartData.subscriptionNote}</span>
-                </div>
-              </div>
-
-              <div className="v2-cart-total">
-                <span className="v2-cart-total-label">Total</span>
-                <div className="v2-cart-total-amount">
-                  <span className="v2-cart-total-number">${cartData.total.toFixed(2)}</span>
-                  <span className="v2-cart-total-suffix">USD {cartData.totalPeriod}</span>
-                </div>
-              </div>
-
-              <button className="v2-cart-checkout">Proceed to Checkout</button>
-              <p className="v2-cart-secure">Secure checkout</p>
-            </div>
-          </aside>
         </div>
       </div>
 
