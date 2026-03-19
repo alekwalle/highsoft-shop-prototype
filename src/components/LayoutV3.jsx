@@ -7,16 +7,16 @@ export default function LayoutV3() {
   const [advantagePlus, setAdvantagePlus] = useState(false)
   const [showCompare, setShowCompare] = useState(false)
 
-  const subTotal = advantagePlus ? 395 : 366
+  const subTotal = advantagePlus ? 400 : 350
 
   const cartData = selectedPlan === 'subscription'
     ? {
         licenseType: 'Annual License',
         productName: 'Product1',
         planTitle: 'Subscription',
-        seatPrice: 366,
+        seatPrice: 350,
         subscription: advantagePlus ? 'Premium Support' : 'Support',
-        subscriptionNote: advantagePlus ? '146.00 USD yearly' : 'Included in license',
+        subscriptionNote: advantagePlus ? '50.00 USD yearly' : 'Included in license',
         total: subTotal,
         totalPeriod: '/year',
       }
@@ -24,10 +24,10 @@ export default function LayoutV3() {
         licenseType: 'Perpetual License',
         productName: 'Product1',
         planTitle: 'Lifetime',
-        seatPrice: 839,
+        seatPrice: 800,
         subscription: 'Premium Support',
-        subscriptionNote: 'First year included, then 335.60 USD yearly',
-        total: 839,
+        subscriptionNote: 'First year included, then 350.00 USD yearly',
+        total: 800,
         totalPeriod: 'one-time',
       }
 
@@ -67,7 +67,7 @@ export default function LayoutV3() {
               </div>
 
               <div className="v2-card-price-block">
-                <span className="v2-card-price">${advantagePlus ? '395' : '366'}</span>
+                <span className="v2-card-price">${advantagePlus ? '400' : '350'}</span>
                 <span className="v2-card-price-period">/year</span>
               </div>
 
@@ -103,7 +103,7 @@ export default function LayoutV3() {
                 <div className="v2-addon-content">
                   <div className="v2-addon-header">
                     <span className="v2-addon-title">Upgrade to Premium Support</span>
-                    <span className="v2-addon-price">+$29/year</span>
+                    <span className="v2-addon-price">+$50/year</span>
                   </div>
                   
                 </div>
@@ -131,7 +131,7 @@ export default function LayoutV3() {
               </div>
 
               <div className="v2-card-price-block">
-                <span className="v2-card-price">$839</span>
+                <span className="v2-card-price">$800</span>
                 <span className="v2-card-price-period">one-time</span>
               </div>
 
@@ -145,7 +145,7 @@ export default function LayoutV3() {
                   </div>
                 </li>
                 <li className="v2-feature-header" style={{marginTop: '12px', fontWeight: 'bold', color: '#3b2d5c'}}>
-                  First year included, then $336/yearly:
+                  First year included, then $350/yearly:
                 </li>
                 <li className="v2-feature-row v2-feature-indent">
                   <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
