@@ -10,8 +10,8 @@ export default function LayoutV2() {
       id: 'basic-subscription',
       title: 'Subscription',
       tagline: 'Flexible access',
-      description: 'Use our software and updates as long as you subscribe, with Support.',
-      price: '$366',
+      description: 'Use our software and updates as long as you subscribe.',
+      price: '$350',
       pricePeriod: '/year',
       features: [
         { label: 'Latest version', color: 'green' },
@@ -20,10 +20,10 @@ export default function LayoutV2() {
       cart: {
         licenseType: 'Annual License',
         productName: 'Product1',
-        seatPrice: 366,
+        seatPrice: 350,
         subscription: 'Support',
         subscriptionNote: 'Included in license',
-        total: 366,
+        total: 350,
         totalPeriod: '/year'
       }
     },
@@ -32,8 +32,8 @@ export default function LayoutV2() {
       title: 'Subscription+',
       tagline: 'Best value',
       recommended: true,
-      description: 'Use our software and updates as long as you subscribe, with Premium Support.',
-      price: '$395',
+      description: 'Use our software and updates as long as you subscribe.',
+      price: '$400',
       pricePeriod: '/year',
       features: [
         { label: 'Latest version', color: 'green' },
@@ -42,10 +42,10 @@ export default function LayoutV2() {
       cart: {
         licenseType: 'Annual License',
         productName: 'Product1',
-        seatPrice: 395,
+        seatPrice: 400,
         subscription: 'Premium Support',
-        subscriptionNote: '146.00 USD yearly',
-        total: 395,
+        subscriptionNote: '50.00 USD yearly',
+        total: 400,
         totalPeriod: '/year'
       }
     },
@@ -53,22 +53,22 @@ export default function LayoutV2() {
       id: 'lifetime-license',
       title: 'Lifetime',
       tagline: 'Permanent license',
-      description: 'Use the software forever. Includes one year of updates and Premium Support.',
-      price: '$839',
+      description: 'Use the software forever with a one-time purchase.',
+      price: '$850',
       pricePeriod: 'one-time',
       features: [
         { label: 'Lifetime access to current version', color: 'purple' },
-        { label: 'First year included, then $336/yearly:', isHeader: true, color: 'purple' },
+        { label: 'First year included, then $350/yearly:', isHeader: true, color: 'purple' },
         { label: 'Premium support', indent: true, color: 'green' },
         { label: 'Latest version', indent: true, color: 'green' },
       ],
       cart: {
         licenseType: 'Perpetual License',
         productName: 'Product1',
-        seatPrice: 839,
+        seatPrice: 850,
         subscription: 'Premium Support',
-        subscriptionNote: 'First year included, then 335.60 USD yearly',
-        total: 839,
+        subscriptionNote: 'First year included, then 350.00 USD yearly',
+        total: 850,
         totalPeriod: 'one-time'
       }
     }
@@ -81,9 +81,6 @@ export default function LayoutV2() {
       <div className="v2-hero">
         <div className="v2-hero-inner">
           <h1 className="v2-hero-title">Choose your plan</h1>
-          <p className="v2-hero-subtitle">
-            Flexible licensing to match how you build. Subscribe for continuous access, or own it forever.
-          </p>
         </div>
       </div>
 
@@ -124,7 +121,7 @@ export default function LayoutV2() {
 
                   <ul className="v2-card-features">
                     {plan.features.map((f, i) => (
-                      <li key={i} className={`v2-feature-row ${f.isHeader ? 'v2-feature-header' : ''} ${f.indent ? 'v2-feature-indent' : ''}`}>
+                      <li key={i} className={`v2-feature-row ${f.isHeader ? 'v2-feature-header' : ''} ${f.indent ? 'v2-feature-indent' : ''}`} style={f.isHeader ? {marginTop: '12px', fontWeight: 'bold', color: '#3b2d5c'} : {}}>
                         {!f.isHeader && !f.isDot && (
                           <svg className="v2-feature-icon" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
                             <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
