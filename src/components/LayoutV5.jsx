@@ -24,6 +24,7 @@ export default function LayoutV5() {
   // Price display
   const displayPrice = '$350'
   const displayPeriod = '/year'
+  const renewalAmount = baseYearly + (hasPremium ? premiumYearly : 0)
 
   return (
     <div className="v2">
@@ -41,11 +42,13 @@ export default function LayoutV5() {
           {/* ── Plan card ── */}
           <div className="v2-card">
             <div className="v2-card-top v5-card-top">
-              <div className="v2-card-price-block v5-price-over">
-                <span className="v2-card-price">{displayPrice}</span>
-                <span className="v2-card-price-period">{displayPeriod}</span>
+              <div className="v5-title-price-row">
+                <h2 className="v2-card-title">Subscription</h2>
+                <div className="v2-card-price-block v5-price-over">
+                  <span className="v2-card-price">{displayPrice}</span>
+                  <span className="v2-card-price-period">{displayPeriod}</span>
+                </div>
               </div>
-              <h2 className="v2-card-title">Subscription for Product</h2>
               <p>Gives you access to use the software as long as you subscribe</p>
             </div>
 
@@ -108,15 +111,18 @@ export default function LayoutV5() {
               </div>
             </label>
           </div>
-{/* 
+
           <div className="v5-total-wrap">
             <div className="v5-total">
               <div className="v5-total-row v5-total-row--pay">
                 <span>Total: </span>
-                <span> ${payToday}</span>
+                <span>${payToday}</span>
+              </div>
+              <div className="v5-total-row v5-total-row--renewal">
+                <span>Then ${renewalAmount} yearly</span>
               </div>
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
