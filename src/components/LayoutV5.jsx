@@ -111,16 +111,13 @@ export default function LayoutV5() {
               </div>
             </label>
           </div>
-
-          <div className="v5-total-wrap">
-            <div className="v5-total">
-              <div className="v5-total-row v5-total-row--pay">
-                <span>Total: </span>
-                <span>${payToday}</span>
-              </div>
-              <div className="v5-total-row v5-total-row--renewal">
-                <span>Then ${renewalAmount} yearly</span>
-              </div>
+          <div className="v5-total">
+            <div className="v5-total-row v5-total-row--pay">
+              <span>Total: </span>
+              <span>${payToday}</span>
+            </div>
+            <div className="v5-total-row v5-total-row--renewal">
+              <span>Then ${renewalAmount} /year</span>
             </div>
           </div>
         </div>

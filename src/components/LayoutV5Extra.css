@@ -1,9 +1,8 @@
 /* ── V5 extras ── */
 
-/* Center single-column layout */
+/* Two-column layout: card on left, total on right */
 .v5-single {
-  grid-template-columns: minmax(0, 560px);
-  justify-content: center;
+  grid-template-columns: 1fr 280px;
 }
 
 /* Locked addon state for lifetime */
@@ -92,7 +91,7 @@
 }
 
 .v5-total {
-  margin-top: 20px;
+  align-self: center;
   padding: 28px 32px;
   border: 1px solid #e6e6f1;
   border-radius: 10px;
@@ -101,11 +100,6 @@
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-}
-
-.v5-total-wrap {
-  display: flex;
-  justify-content: center;
 }
 
 .v5-total-row {
