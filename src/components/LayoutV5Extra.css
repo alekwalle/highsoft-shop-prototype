@@ -5,6 +5,38 @@
   grid-template-columns: 1fr 280px;
 }
 
+/* Single centered column (legacy) */
+.v6-single {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
+}
+
+/* V6 two-column layout */
+.v6-layout {
+  display: grid;
+  grid-template-columns: 650px 300px;
+  gap: 20px;
+  align-items: start;
+  justify-content: center;
+}
+
+.v6-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.v6-cart {
+  position: sticky;
+  top: 24px;
+}
+
+.v6-cart-renewal {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #7d8692;
+}
+
 /* Locked addon state for lifetime */
 .v5-addon--locked {
   opacity: 0.85;
@@ -142,4 +174,172 @@
 
 .v5-price-over .v2-card-price-period {
   font-size: 0.85rem;
+}
+
+/* ── Internal-use card ── */
+
+.v6-internal-card {
+  gap: 0;
+}
+
+.v6-internal-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.v6-internal-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 22px;
+  background: #ffffff;
+  border: 2px solid #c8c7d1;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.v6-internal-option--checked {
+  border-color: #0b8a61;
+  background: #e9f7f1;
+}
+
+.v6-internal-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.v6-internal-checkbox {
+  width: 27px;
+  height: 27px;
+  border: 3px solid #c8c7d1;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.v6-internal-checkbox--checked {
+  border-color: #0b8a61;
+  background: #0b8a61;
+}
+
+.v6-internal-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f2e38;
+}
+
+.v6-internal-desc {
+  font-size: 16px;
+  color: #033427;
+}
+
+.v6-internal-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 4px 0;
+}
+
+.v6-internal-notice-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #75738c;
+}
+
+.v6-internal-notice-text strong {
+  font-weight: 700;
+  color: #75738c;
+}
+
+/* ── Usage type card (new concept) ── */
+
+.v6-usage-card {
+  gap: 8px;
+}
+
+.v6-usage-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 22px;
+  background: #ffffff;
+  border: 2px solid #c8c7d1;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.v6-usage-option--selected {
+  border-color: #0b8a61;
+  background: #e9f7f1;
+}
+
+.v6-usage-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.v6-usage-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #c8c7d1;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  transition: border-color 120ms ease;
+}
+
+.v6-usage-radio--selected {
+  border-color: #0b8a61;
+}
+
+.v6-usage-radio--selected::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0b8a61;
+}
+
+.v6-usage-apps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 4px;
+  padding: 14px 22px;
+  background: #f4f4f7;
+  border-radius: 5px;
+}
+
+/* ── Apps card ── */
+
+.v6-apps-card .v2-card-title {
+  margin: 0 0 12px;
+}
+
+.v6-apps-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.v6-apps-desc {
+  margin: 0;
+  font-size: 13px;
+  color: #75738c;
 }
